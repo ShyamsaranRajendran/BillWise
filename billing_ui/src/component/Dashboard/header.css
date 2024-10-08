@@ -1,0 +1,90 @@
+
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
+
+.left-head {
+
+  margin: 0 5px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.refresh-btn,
+.newcustomer-box,
+.group-list-icon,
+.bell-icon-subcript,
+.settings-icon,
+.profile-icon,
+.waffle-iron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0 0px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.refresh-btn:hover,
+.newcustomer-box:hover,
+.group-list-icon:hover,
+.bell-icon-subcript:hover,
+.settings-icon:hover,
+.profile-icon:hover,
+.waffle-iron:hover {
+  background-color: #e0e0e0;
+}
+
+.search-box input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  width: 300px;
+}
+
+.right-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.profile span {
+  margin-left: 10px;
+}
+.profile-icon {
+  display: flex;
+  flex-direction: row;
+}
+.profile-icon .profile-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 8px 8px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+}

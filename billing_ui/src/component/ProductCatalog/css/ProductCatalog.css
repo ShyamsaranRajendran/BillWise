@@ -1,0 +1,179 @@
+/* Container for product cards */
+.product-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Container for the search form */
+.search-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Align items to the left */
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 10px; /* Space between the elements */
+}
+.product-header{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.product-add-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   position: relative;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  height: 95%;
+  width: 90%;
+}
+
+.product-add-card .plus-icon {
+  font-size: 4rem; /* Adjusted for better scaling */
+  color: #007bff; /* Icon color */
+}
+
+.product-add-card:hover {
+  transform: translateY(-8px) scale(1.05); /* Increased scaling for more impact */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* More dramatic shadow on hover */
+  background-color: #ffffff; /* Subtle background change */
+}
+
+/* Styling for the text input */
+.search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 500px;
+  margin: 0;
+  transition: border-color 0.3s ease;
+}
+
+/* Change border color when the input is focused */
+.search-form input[type="text"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Left box that contains the brand dropdown */
+.left-box-search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px; /* Space between items */
+}
+
+/* Styling for the dropdown select */
+.search-form select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+/* Change border color when the dropdown is focused */
+.search-form select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Button styles */
+.search-form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  color: #0c0101;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the button */
+.search-form button:hover {
+  background-color: #0056b3;
+}
+
+.products {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  gap: 20px;
+  width: 100%;
+  border-bottom: 2px solid black;
+  overflow-x: auto; /* Horizontal scrolling if necessary */
+  scrollbar-width: thin; /* Firefox scrollbar width */
+  scrollbar-color: #888 #f1f1f1; /* Firefox scrollbar colors */
+}
+
+/* Specific styles for suggester */
+.suggester {
+  flex-wrap: wrap;
+  height: 400px; /* Fixed height for vertical scrolling */
+}
+
+.products::-webkit-scrollbar {
+  width: 12px;
+}
+
+.products::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.products::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.products::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #d6d6d6;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  margin: 0 10px;
+  align-self: center;
+}

@@ -1,0 +1,77 @@
+.Dashboard-container {
+  display: flex;
+  width: 100%;
+  height: 100vh; 
+  overflow: hidden; /* Prevents overall scrollbar on the dashboard */
+}
+
+.blur {
+  filter: blur(5px); 
+}
+
+.Sidebar {
+  flex-shrink: 0; 
+  width: 250px; 
+  background-color: #333; 
+  height: 100%; 
+  overflow-y: auto; /* Allows scrolling within the sidebar if content exceeds height */
+}
+
+.content1 {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+  overflow-y: auto; /* Enables vertical scrolling for content */
+}
+
+.DashHeader {
+  flex-shrink: 0; 
+  background-color: #f8f8f8; 
+  padding: 20px; /* Adjust padding as needed */
+  width: 100%; /* Ensure header takes full width */
+  border-bottom: 1px solid #ddd; /* Optional: Add a bottom border */
+}
+
+.Outlet {
+  flex: 1; 
+  padding: 20px; /* Adjust padding as needed */
+  overflow-y: auto; /* Enables vertical scrolling for outlet */
+}
+
+/* Scrollbar styles for WebKit browsers (Chrome, Safari) */
+.content::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+.content::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background color of the scrollbar track */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker color for the scrollbar thumb on hover */
+}
+
+/* Scrollbar styles for Firefox */
+.content {
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: #888 #f1f1f1; /* Thumb and track color */
+}
+
+/* Scrollbar styles for Edge and Internet Explorer */
+.content {
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* Autohide scrollbar in Edge and IE */
+}

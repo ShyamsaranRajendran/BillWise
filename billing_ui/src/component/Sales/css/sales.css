@@ -1,0 +1,77 @@
+.Sales {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Ensure it takes full width */
+}
+
+.sales-dash {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px; /* Space below the dashboard */
+}
+
+.sales-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Flexible columns */
+  gap: 16px; /* Space between grid items */
+  width: 100%; /* Full width for responsive grid */
+  max-width: 1200px; /* Limit maximum width for better layout on large screens */
+  margin: 20px auto; /* Center the grid horizontally */
+}
+
+.sale-add-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  height: 300px; /* Maintain consistent height */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sale-add-card:hover {
+  background-color: #e0e0e0; /* Change background on hover */
+}
+
+.plus-icon {
+  font-size: 48px; /* Size for the plus icon */
+  color: #333; /* Color for the icon */
+}
+
+.sales-header{
+   display: flex;
+   flex-direction: row;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0; /* Space above and below pagination */
+}
+
+.pagination-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 0 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed; /* Change cursor when disabled */
+}
+
+.pagination-info {
+  margin: 0 16px; /* Space around pagination info */
+}

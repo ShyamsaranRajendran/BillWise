@@ -1,0 +1,26 @@
+{
+    "sales": [
+        { "date": "2024-09-01", "amount": 150 },
+        { "date": "2024-09-02", "amount": 200 },
+        { "date": "2024-09-03", "amount": 250 },
+        { "date": "2024-09-04", "amount": 300 },
+        { "date": "2024-09-05", "amount": 350 },
+        { "date": "2024-09-06", "amount": 400 },
+        { "date": "2024-09-07", "amount": 450 },
+        { "date": "2024-09-08", "amount": 500 },
+        { "date": "2024-09-09", "amount": 550 },
+        { "date": "2024-09-10", "amount": 600 }
+    ],
+    "stock": [
+        { "productName": "Product A", "quantity": 50 },
+        { "productName": "Product B", "quantity": 30 },
+        { "productName": "Product C", "quantity": 70 },
+        { "productName": "Product D", "quantity": 90 },
+        { "productName": "Product E", "quantity": 20 },
+        { "productName": "Product F", "quantity": 60 },
+        { "productName": "Product G", "quantity": 40 },
+        { "productName": "Product H", "quantity": 80 },
+        { "productName": "Product I", "quantity": 100 },
+        { "productName": "Product J", "quantity": 10 }
+    ]
+}

@@ -1,0 +1,79 @@
+.sale-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 400px;
+}
+
+.sale-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sale-card p {
+  margin: 8px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.sale-card p strong {
+  font-weight: 600;
+  color: #000;
+}
+
+.sale-card .product-name,
+.sale-card .customer-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.sale-card .amount {
+  font-size: 16px;
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.sale-card .discount,
+.sale-card .tax {
+  font-size: 14px;
+  color: #e67e22; /* Color for discount and tax */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.edit-button,
+.delete-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button {
+  background-color: #3498db; /* Blue for edit */
+}
+
+.edit-button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+.delete-button {
+  background-color: #e74c3c; /* Red for delete */
+}
+
+.delete-button:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}

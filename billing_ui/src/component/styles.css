@@ -1,0 +1,195 @@
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.landing-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header-land {
+  width: 100vw;
+  height: auto;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header-land p {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.btn-analyze {
+  margin: 10px 10px;
+  width: auto;
+  height: auto;
+  font-size: 25px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border: 2px solid #f16334;
+  background-color: white;
+  color: #f16334;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.header-land button::before,
+.header-land button::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  top: 0;
+  left: -100%;
+  background-color: #f16334;
+  transition: width 0.3s, left 0.3s;
+  animation: wave-animation 0.8s forwards;
+}
+
+.header-land button::after {
+  animation-delay: 0.2s;
+}
+
+@keyframes wave-animation {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.header-land button:hover::before,
+.header-land button:hover::after {
+  animation: wave-animation 0.8s forwards;
+}
+
+.header-land button:hover {
+  color: white;
+  background-color: #f16334;
+}
+
+.header-land button:active {
+  transform: scale(0.95);
+}
+
+.body-land {
+  font-style: inherit;
+  padding: 10px 10px;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f16334;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.land-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  color: white;
+}
+
+.land-bar-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
+
+.land-bar-1 hr {
+  border: none;
+  border-left: 2px solid aliceblue;
+  height: 0;
+  margin: 0;
+}
+
+.land-bar-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  color: white;
+}
+
+.land-bar-2 li {
+  list-style: none;
+  font-size: 20px;
+  position: relative;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.land-bar-2 li:hover {
+  color: #f75200;
+  background-color: white;
+}
+
+
+
+.dash{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 30px;
+  height: 100%; 
+}
+.higher-text{
+  font-size: 80px;
+  font-weight: 800;
+  color: white;
+}
+.secondary-text{
+   font-size: 30px;
+  font-weight: 300;
+  color: white;
+}
+.start button {
+  margin: 10px 10px;
+  width: auto;
+  height: auto;
+  background-color: white;
+  color: #f16334;
+  font-size: 25px;
+  font-weight: 400;
+  border-radius: 20px;
+  padding: 10px 20px;
+  border: 2px solid white;
+  transition: background-color 0.5s, color 0.3s, border-color 0.3s, font-size 0.5s ease-out,
+    border-radius 0.3s ease-out;
+}
+
+.start button:hover {
+  font-size: 28px; 
+  font-weight: 300; 
+  border-radius: 18px;
+  color: aliceblue;
+    background-color: #f75200;
+  border: 3px solid white; 
+}
+
+
