@@ -109,7 +109,7 @@ const Graph = () => {
       },
     },
     interaction: {
-      mode: "nearest", // Changed for better interaction
+      mode: "nearest",
       intersect: true,
     },
     scales: {
