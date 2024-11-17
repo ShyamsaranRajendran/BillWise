@@ -37,6 +37,14 @@ function Sidebar() {
         </li>
         <li>
           <NavLink
+            to="invoices"
+            className={({ isActive }) => (isActive ? "active-link" : "")}
+          >
+            <Web className="icon" /> Invoices
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="product-catalog"
             className={({ isActive }) => (isActive ? "active-link" : "")}
           >

@@ -23,6 +23,7 @@ import EditProduct from './component/ProductCatalog/EditProduct.jsx';
 import NewSales from './component/Sales/AddSales.jsx';
 import EditSales from './component/Sales/EditSales.jsx'; 
 import 'leaflet/dist/leaflet.css';
+import { Invoices } from './component/Invoices/Invoices.jsx';
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/Dashboard/*" element={<Dashboard />}>
-            <Route path="home" element={<Home />} />
+            <Route path="" element={<Home />} />
             <Route path="customers" element={<Customers />}>
               <Route path="new-customer" element={<NewCustomer />} />
               <Route path="edit-customer/:id" element={<EditCustomer />} />
@@ -45,12 +46,15 @@ function App() {
               <Route path="edit-sales/:id" element={<EditSales />} />
             </Route>
             <Route path="payments" element={<Payments />} />
+                        <Route path="invoices" element={<Invoices />} />
+
             <Route path="expense" element={<Expense />} />
             <Route path="time-tracking" element={<TimeTracking />} />
             <Route path="events" element={<Events />} />
             <Route path="reports" element={<Reports />} />
             <Route path="web-tabs" element={<WebTabs />} />
           </Route>
+
           <Route path="/user" element={<User />} /> 
           <Route path="/" element={<Land />} />
         </Routes>
