@@ -1,0 +1,48 @@
+/* Container for the whole WebTabs component */
+.web-tabs-container {
+  width: 80%;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Styling for the tab buttons */
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.tab-item {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.tab-item:hover {
+  background-color: #e2e2e2;
+}
+
+/* Active tab styling */
+.tab-item.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+/* Content area below tabs */
+.tab-content {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content p {
+  margin: 0;
+  font-size: 16px;
+}

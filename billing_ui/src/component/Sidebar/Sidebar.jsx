@@ -21,7 +21,7 @@ function Sidebar() {
       <ul className="sidebar-nav">
         <li>
           <NavLink
-            to="home"
+            to=" "
             className={({ isActive }) => (isActive ? "active-link" : "")}
           >
             <IoHome className="icon" /> Home
@@ -100,12 +100,12 @@ function Sidebar() {
           </NavLink>
         </li>
         <li>
-          <NavLink
+          {/* <NavLink
             to="web-tabs"
             className={({ isActive }) => (isActive ? "active-link" : "")}
           >
             <Web className="icon" /> Web Tabs
-          </NavLink>
+          </NavLink> */}
         </li>
       </ul>
     </div>

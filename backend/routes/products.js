@@ -4,6 +4,7 @@ const authenticate = require("../utils/AuthDecode"); // Assuming you have authen
 const Products = require('../models/products');
 const Charts = require('../models/charts');
 const Stock =require('../models/stock.js')
+const Invoice = require('../models/Invoice.js');
 // Route to get all products with pagination, search, and brand filtering
 router.get('/all',authenticate, async function (req, res) {
   try {
@@ -33,6 +34,68 @@ router.get('/all',authenticate, async function (req, res) {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+router.get("/home", async (req, res) => {
+  try {
+    // Dummy stats data
+    const stats = [
+      {
+        name: "Revenue",
+        value: 12000, // Use numerical value for calculations
+        change: "+12%",
+        changeType: "positive",
+      },
+      {
+        name: "Customers",
+        value: 1234, // Numerical value for customers
+        change: "+5%",
+        changeType: "positive",
+      },
+    ];
+
+    // Dummy revenue data
+    const revenueData = [
+      { date: "2024-01", revenue: 4000, expenses: 2400 },
+      { date: "2024-02", revenue: 3000, expenses: 1398 },
+    ];
+
+    // Dummy customer type data
+    const customerTypeData = [
+      { name: "New Customers", value: 400, color: "#FF6B6B" },
+      { name: "Returning Customers", value: 300, color: "#4ECDC4" },
+    ];
+
+    // Fetch recent invoices from the database
+    const recentInvoices = await Invoice.find({})
+      .sort({ dateOfIssue: -1 }) // Sort by `dateOfIssue` in descending order
+      .limit(5) // Limit to the 5 most recent invoices
+      .select("invoiceNumber billTo total status -_id"); // Select necessary fields
+
+    // Fetch top products from the database
+    const topProducts = await Products.find({})
+      .sort({ sales: -1 }) // Sort by sales in descending order
+      .limit(5) // Limit to top 5 products
+      .select("name sales -_id"); // Select only the name and sales fields, exclude _id
+
+    // Prepare and send the response
+    const response = {
+      stats,
+      revenueData,
+      customerTypeData,
+      recentInvoices,
+      topProducts,
+    };
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.error("Error fetching home page data:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
+
 router.get('/products-repo', authenticate,async function (req, res) {
   try {
     // Extract minStock and maxStock from query parameters
@@ -191,6 +254,28 @@ router.post("/add", async (req, res) => {
     res.status(500).json({ message: "Failed to add product", error: error.message });
   }
 });
+
+router.delete("/delete/:product_id", async (req, res) => {
+  const { product_id } = req.params;
+
+  try {
+    // Check if the product exists
+    const product = await Products.findOne({ product_id });
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found." });
+    }
+
+    // Delete the product
+    await Products.deleteOne({ product_id });
+
+    res.status(200).json({ message: "Product deleted successfully." });
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    res.status(500).json({ message: "Failed to delete product", error: error.message });
+  }
+});
+
 
 router.get('/charts', async function (req, res) {
   try {

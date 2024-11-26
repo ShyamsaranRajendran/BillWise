@@ -27,11 +27,11 @@ const handleChange = (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/customers",
+        "http://localhost:5000/cus/customer/add",
         formData
       );
       console.log("Customer data saved:", response.data);
-      navigate("/customers");
+      navigate("/dashboard/customers");
     } catch (error) {
       console.error("Error saving customer data:", error);
     }

@@ -7,9 +7,26 @@ const Customer = require('../models/customer'); // Assuming you have a Customer 
 const authenticate = require("../utils/AuthDecode"); // Assuming you have authentication middleware
 const PDFDocument = require('pdfkit');
 
+// Route to delete a sale record by ID
+router.delete('/:id', async function (req, res) {
+  try {
+    const saleId = req.params.id;
+
+    // Find and delete the sale record
+    const deletedSale = await Sales.findByIdAndDelete(saleId);
+
+    if (!deletedSale) {
+      return res.status(404).json({ error: "Sale record not found" });
+    }
+
+    res.json({ message: "Sale record deleted successfully", deletedSale });
+  } catch (err) {
+    console.error("Error deleting sale record:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 // Route to get all products with pagination, search, and brand filtering
-
 router.get('/all', authenticate, async function (req, res) {
   try {
     const { page = 1, limit = 12, search = "", brand = "" } = req.query;
@@ -264,29 +281,29 @@ router.get('/profit-margin', async (req, res) => {
   }
 });
 
-
 router.get('/payment', async (req, res) => {
   try {
-    // Fetch all sales records
+    // Fetch all sales records and populate product_id and customer_id
     const sales = await Sales.find().populate('product_id').populate('customer_id');
 
-    if (!sales) {
+    if (!sales || sales.length === 0) {
       return res.status(404).json({ error: 'No sales data found' });
     }
+
+    console.log('Fetched sales:', sales);
 
     // Sort sales by sale_date descending
     const sortedSales = sales.sort((a, b) => new Date(b.sale_date) - new Date(a.sale_date));
 
     // Define current date for calculations
     const currentDate = new Date();
-
-    // Calculate Current Payment (e.g., total amount due for the current month)
     const currentMonth = currentDate.getMonth(); // 0-11
     const currentYear = currentDate.getFullYear();
 
+    // Calculate Current Payment (e.g., total amount due for the current month)
     const currentPayments = sales.filter(sale => {
-      const saleDate = new Date(sale.sale_date);
-      return saleDate.getMonth() === currentMonth && saleDate.getFullYear() === currentYear;
+      const saleDate = sale.sale_date ? new Date(sale.sale_date) : null;
+      return saleDate && saleDate.getMonth() === currentMonth && saleDate.getFullYear() === currentYear;
     });
 
     const currentPaymentAmount = currentPayments.reduce((acc, sale) => acc + sale.final_amount, 0);
@@ -319,10 +336,10 @@ router.get('/payment', async (req, res) => {
 
     // Prepare Invoices
     const invoices = sales.map(sale => ({
-      id: sale._id, // Add the sale ID
+      id: sale._id,
       date: new Date(sale.sale_date).toLocaleString('default', { month: 'short', year: 'numeric' }),
       amount: `INR $${(sale.final_amount / 100).toFixed(2)}`, // Assuming amount is in cents
-      plan: sale.product_id.name, // Assuming 'plan' corresponds to product name
+      plan: sale.product_id ? sale.product_id.name : 'Unknown Product', // Safely access product name
       status: 'Paid', // Assuming all sales are paid; adjust as necessary
     }));
 
@@ -348,6 +365,92 @@ router.get('/payment', async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+
+
+// router.get('/payment', async (req, res) => {
+//   try {
+//     // Fetch all sales records
+//     const sales = await Sales.find().populate('product_id').populate('customer_id');
+
+//     if (!sales) {
+//       return res.status(404).json({ error: 'No sales data found' });
+//     }
+
+//     // Sort sales by sale_date descending
+//     const sortedSales = sales.sort((a, b) => new Date(b.sale_date) - new Date(a.sale_date));
+
+//     // Define current date for calculations
+//     const currentDate = new Date();
+
+//     // Calculate Current Payment (e.g., total amount due for the current month)
+//     const currentMonth = currentDate.getMonth(); // 0-11
+//     const currentYear = currentDate.getFullYear();
+
+//     const currentPayments = sales.filter(sale => {
+//       const saleDate = new Date(sale.sale_date);
+//       return saleDate.getMonth() === currentMonth && saleDate.getFullYear() === currentYear;
+//     });
+
+//     const currentPaymentAmount = currentPayments.reduce((acc, sale) => acc + sale.final_amount, 0);
+//     const currentPaymentDueDate = new Date(currentDate.setDate(currentDate.getDate() + 30)).toLocaleDateString();
+
+//     // Calculate Last Payment (e.g., total amount paid in the previous month)
+//     const lastMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+//     const lastYear = currentMonth === 0 ? currentYear - 1 : currentYear;
+
+//     const lastPayments = sales.filter(sale => {
+//       const saleDate = new Date(sale.sale_date);
+//       return saleDate.getMonth() === lastMonth && saleDate.getFullYear() === lastYear;
+//     });
+
+//     const lastPaymentAmount = lastPayments.reduce((acc, sale) => acc + sale.final_amount, 0);
+//     const lastPaymentDate = lastPayments.length > 0
+//       ? new Date(lastPayments[0].sale_date).toLocaleDateString()
+//       : 'N/A';
+
+//     // Card Details (This should ideally come from a secure source or user profile)
+//     const cardDetails = {
+//       cardNumber: '**** **** **** 1234', // Placeholder
+//     };
+
+//     // Pricing Calculator Info
+//     const pricingCalculator = {
+//       description: 'Want to have more pods or change the pod type?',
+//       link: '/calculate', // Adjust as necessary
+//     };
+
+//     // Prepare Invoices
+//     const invoices = sales.map(sale => ({
+//       id: sale._id, // Add the sale ID
+//       date: new Date(sale.sale_date).toLocaleString('default', { month: 'short', year: 'numeric' }),
+//       amount: `INR $${(sale.final_amount / 100).toFixed(2)}`, // Assuming amount is in cents
+//       plan: sale.product_id.name, // Assuming 'plan' corresponds to product name
+//       status: 'Paid', // Assuming all sales are paid; adjust as necessary
+//     }));
+
+//     // Structure the response
+//     const paymentData = {
+//       currentPayment: {
+//         amount: (currentPaymentAmount / 100).toFixed(2), // Assuming amount is in cents
+//         dueDate: currentPaymentDueDate,
+//       },
+//       lastPayment: {
+//         amount: (lastPaymentAmount / 100).toFixed(2),
+//         paidDate: lastPaymentDate,
+//       },
+//       cardDetails: cardDetails,
+//       pricingCalculator: pricingCalculator,
+//       invoices: invoices,
+//     };
+
+//     console.log(paymentData);
+//     res.json(paymentData);
+//   } catch (err) {
+//     console.error("Error fetching payment data:", err);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
 
 
 

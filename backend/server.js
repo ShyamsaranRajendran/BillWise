@@ -33,10 +33,12 @@ const user = require('./routes/users');
 const customer = require('./routes/customer');
 const products = require('./routes/products');
 const sales = require('./routes/sales');
+const invoice = require('./routes/Invoice');
 
 app.use("/products/", products);
 app.use("/sales/", sales); 
 app.use("/cus/", customer);
+app.use("/invoices/",invoice);
 app.use("/usr/", user);
 
 

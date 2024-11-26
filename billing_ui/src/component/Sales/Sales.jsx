@@ -1,5 +1,3 @@
-// src/components/Sales.jsx
-
 import React, { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { GoPlus } from "react-icons/go";
@@ -8,6 +6,7 @@ import AverageSale from "./graph/AverageSale.jsx";
 import "./css/sales.css";
 import SaleCard from "./salesCard.jsx"; // Import the new SaleCard component
 import { Refresh, Add } from "@material-ui/icons";
+
 function Sales() {
   const [sales, setSales] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -61,12 +60,49 @@ function Sales() {
   const handleSearch = (e) => {
     e.preventDefault();
     setCurrentPage(1); // Reset to first page on new search
-    // The useEffect will automatically fetch data based on the updated searchQuery
   };
 
   const handlePageChange = (page) => {
     if (page > 0 && page <= totalPages) {
       setCurrentPage(page);
+    }
+  };
+
+  const handleEdit = (saleId) => {
+    // Navigate to the edit page for the specific sale
+    window.location.href = `/Dashboard/sales/edit-sales/${saleId}`;
+  };
+
+  const handleDelete = async (saleId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this sale?"
+    );
+    if (!confirmDelete) return;
+
+    try {
+      const token = localStorage.getItem("authorization");
+      if (!token) {
+        throw new Error("No authorization token found");
+      }
+
+      const response = await fetch(`http://localhost:5000/sales/${saleId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Remove the deleted sale from the state
+      setSales(sales.filter((sale) => sale._id !== saleId));
+      alert("Sale deleted successfully.");
+    } catch (error) {
+      console.error("Error deleting sale:", error);
+      alert("Failed to delete the sale. Please try again.");
     }
   };
 
@@ -91,8 +127,6 @@ function Sales() {
         <div className="product-header">
           <div className="newcustomer-box">
             <Link to="/Dashboard/sales/new-sales">
-              {" "}
-              {/* Use Link for navigation */}
               <Add />
             </Link>
           </div>
@@ -116,7 +150,14 @@ function Sales() {
         {sales.length === 0 ? (
           <div>No sales found.</div>
         ) : (
-          sales.map((sale) => <SaleCard key={sale._id} sale={sale} />)
+          sales.map((sale) => (
+            <SaleCard
+              key={sale._id}
+              sale={sale}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
+          ))
         )}
         <Link to="/Dashboard/sales/new-sales">
           <div className="sale-add-card">

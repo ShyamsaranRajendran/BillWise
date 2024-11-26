@@ -23,7 +23,13 @@ import EditProduct from './component/ProductCatalog/EditProduct.jsx';
 import NewSales from './component/Sales/AddSales.jsx';
 import EditSales from './component/Sales/EditSales.jsx'; 
 import 'leaflet/dist/leaflet.css';
-import { Invoices } from './component/Invoices/Invoices.jsx';
+import  InvoiceForm  from './component/Invoices/InvoiceForm.jsx';
+import  Blog  from './component/Blog/Blog.jsx';
+import  Tools  from './component/Tools/Tools.jsx';
+import  Services  from './component/Services/Services.jsx';
+import  Contact  from './component/Contact/Contact.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
@@ -46,7 +52,7 @@ function App() {
               <Route path="edit-sales/:id" element={<EditSales />} />
             </Route>
             <Route path="payments" element={<Payments />} />
-                        <Route path="invoices" element={<Invoices />} />
+            <Route path="invoices" element={<InvoiceForm />} />
 
             <Route path="expense" element={<Expense />} />
             <Route path="time-tracking" element={<TimeTracking />} />
@@ -56,7 +62,11 @@ function App() {
           </Route>
 
           <Route path="/user" element={<User />} /> 
-          <Route path="/" element={<Land />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/tools" element={<Tools />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path='/' element={<Land/>}/>
         </Routes>
         <Footer />
       </Router>

@@ -1,10 +1,46 @@
-// components/ProductCard.js
 import React from "react";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import "./css/ProductCard.css";
 import { Link } from "react-router-dom";
 
-function ProductCard({ product }) {
+function ProductCard({ product, onProductDeleted }) {
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete the product "${product.name}"?`
+    );
+    if (!confirmDelete) return;
+
+    try {
+      const token = localStorage.getItem("authorization");
+      if (!token) {
+        throw new Error("No authorization token found");
+      }
+
+      const response = await fetch(
+        `http://localhost:5000/products/delete/${product.product_id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to delete product: ${response.status}`);
+      }
+
+      alert("Product deleted successfully.");
+      if (onProductDeleted) {
+        onProductDeleted(product.product_id); // Notify parent about deletion
+      }
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      alert("Failed to delete the product. Please try again.");
+    }
+  };
+
   return (
     <div className="product-card">
       <div className="card-content">
@@ -47,9 +83,9 @@ function ProductCard({ product }) {
         <Link to={`/Dashboard/product-catalog/edit-product/${product._id}`}>
           <FaEdit className="edit-icon" />
         </Link>
-        <Link to={`/Dashboard/product-catalog/delete-product/${product._id}`}>
+        <button onClick={handleDelete} className="delete-button">
           <FaTrashAlt className="delete-icon" />
-        </Link>
+        </button>
       </div>
     </div>
   );

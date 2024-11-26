@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { format } from "date-fns"; // Optional: for date formatting
-import "./css/saleCard.css"; // Create and style as needed
+import { format } from "date-fns";
+import "./css/saleCard.css";
 
 function SaleCard({ sale, onEdit, onDelete }) {
   return (

@@ -11,8 +11,9 @@ const Landing = () => {
 
   const navigate = useNavigate();
 
-  const handleItemClick = (index) => {
+  const handleItemClick = (index, path) => {
     setActiveItem(index);
+    navigate(path); // Navigate to the respective path
   };
 
   const toggleDropdown = () => {
@@ -20,11 +21,11 @@ const Landing = () => {
   };
 
   const handleButtonClick = () => {
-    setShowLoader(true); 
-    setButtonVisible(false); 
+    setShowLoader(true);
+    setButtonVisible(false);
     setTimeout(() => {
       setShowLoader(false);
-      navigate("/user"); 
+      navigate("/user"); // Navigate to /user after loader
     }, 3000);
   };
 
@@ -51,7 +52,9 @@ const Landing = () => {
                 <li
                   key={index}
                   className={activeItem === index ? "active" : ""}
-                  onClick={() => handleItemClick(index)}
+                  onClick={() =>
+                    handleItemClick(index, `/${item.toLowerCase()}`)
+                  } // Navigate to respective path
                 >
                   {item}
                 </li>

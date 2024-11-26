@@ -4,7 +4,7 @@ const authenticate = require("../utils/AuthDecode"); // Assuming you have authen
 const Customer = require("../models/customer.js");
 
 // GET customers for the authenticated user
-router.get("/customer", authenticate, async function (req, res) {
+router.get("/customer",  async function (req, res) {
   try {
     console.log("Fetching customers for user ID:", req.userId);
 
@@ -22,8 +22,50 @@ router.get("/customer", authenticate, async function (req, res) {
   }
 });
 
+// Edit customer details
+router.put("/customer/edit/:id", authenticate, async (req, res) => {
+  try {
+    const customerId = req.params.id; // Customer ID from the route parameter
+    const updateData = req.body; // Data to update from the request body
 
-router.get("/customer/search", authenticate, async function (req, res) {
+    // Find and update the customer
+    const updatedCustomer = await Customer.findByIdAndUpdate(
+      customerId,
+      updateData,
+      { new: true, runValidators: true } // Return the updated document and validate fields
+    );
+
+    if (!updatedCustomer) {
+      return res.status(404).json({ error: "Customer not found" });
+    }
+
+    res.status(200).json(updatedCustomer);
+  } catch (error) {
+    console.error("Error updating customer:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// Delete customer
+router.delete("/customer/delete/:id", authenticate, async (req, res) => {
+  try {
+    const customerId = req.params.id; // Customer ID from the route parameter
+
+    const deletedCustomer = await Customer.findByIdAndDelete(customerId);
+
+    if (!deletedCustomer) {
+      return res.status(404).json({ error: "Customer not found" });
+    }
+
+    res.status(200).json({ message: "Customer deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting customer:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+router.get("/customer/search",  async function (req, res) {
  try {
     const searchQuery = req.query.query.toLowerCase();
     if (searchQuery) {
@@ -42,7 +84,7 @@ router.get("/customer/search", authenticate, async function (req, res) {
   }
 });
 
-router.post("/customer/add", authenticate, async (req, res) => {
+router.post("/customer/add", async (req, res) => {
    try {
     const customerData = req.body;
     customerData.userId = req.userId;

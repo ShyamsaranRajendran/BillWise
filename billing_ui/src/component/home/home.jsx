@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AreaChart,
   Area,
@@ -13,46 +13,50 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import './home.css';
-// Dummy data
-const stats = [
-  {
-    name: "Revenue",
-    value: "$12,000",
-    change: "+12%",
-    changeType: "positive",
-    icon: () => <div>💰</div>,
-  },
-  {
-    name: "Customers",
-    value: "1,234",
-    change: "+5%",
-    changeType: "positive",
-    icon: () => <div>👤</div>,
-  },
-];
-
-const revenueData = [
-  { date: "2024-01", revenue: 4000, expenses: 2400 },
-  { date: "2024-02", revenue: 3000, expenses: 1398 },
-];
-
-const customerTypeData = [
-  { name: "New Customers", value: 400, color: "#FF6B6B" },
-  { name: "Returning Customers", value: 300, color: "#4ECDC4" },
-];
-
-const recentInvoices = [
-  { id: "INV001", customer: "John Doe", amount: "$1,200", status: "Paid" },
-  { id: "INV002", customer: "Jane Smith", amount: "$980", status: "Pending" },
-];
-
-const topProducts = [
-  { name: "Product A", sales: 2400 },
-  { name: "Product B", sales: 1398 },
-];
+import "./home.css";
 
 function Dashboard() {
+  const [dashboardData, setDashboardData] = useState({
+    stats: [],
+    revenueData: [],
+    customerTypeData: [],
+    recentInvoices: [],
+    topProducts: [],
+  });
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/products/home");
+        if (!response.ok) {
+          throw new Error("Failed to fetch dashboard data");
+        }
+        const data = await response.json();
+        setDashboardData(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchDashboardData();
+  }, []);
+
+  if (loading) {
+    return <p>Loading dashboard data...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  const { stats, revenueData, customerTypeData, recentInvoices, topProducts } =
+    dashboardData;
+
   return (
     <div className="dashboard">
       <div className="header">
@@ -62,7 +66,9 @@ function Dashboard() {
       <div className="stats">
         {stats.map((item) => (
           <div className="stat-card" key={item.name}>
-            <div className="stat-icon">{item.icon()}</div>
+            <div className="stat-icon">
+              {item.name === "Revenue" ? "💰" : "👤"}
+            </div>
             <div className="stat-info">
               <p className="stat-name">{item.name}</p>
               <div className="stat-values">
@@ -135,13 +141,14 @@ function Dashboard() {
           </thead>
           <tbody>
             {recentInvoices.map((invoice) => (
-              <tr key={invoice.id}>
-                <td>{invoice.id}</td>
-                <td>{invoice.customer}</td>
-                <td>{invoice.amount}</td>
-                <td className={invoice.status.toLowerCase()}>
-                  {invoice.status}
-                </td>
+              <tr key={invoice._id}>
+                <td>{invoice.invoiceNumber}</td>
+                <td>{invoice.billTo}</td>
+                <td>${invoice.total}</td>
+                {/* <td className={invoice.status.toLowerCase() || "paid"}>
+                  {invoice.status || "paid"}
+                </td> */}
+                <td className={"paid"}>{"paid"}</td>
               </tr>
             ))}
           </tbody>
