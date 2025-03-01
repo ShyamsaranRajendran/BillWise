@@ -1,0 +1,45 @@
+.cardType {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%; /* Adjust width according to card width and margin */
+}
+
+.carousel-container {
+  display: flex;
+    gap: 20px;
+  transition: transform 0.5s ease;
+  width: 100%; /* Adjust according to card width and margin */
+}
+
+.arrow {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow:first-of-type {
+  left: 0;
+}
+
+.arrow:last-of-type {
+  right: 0;
+}

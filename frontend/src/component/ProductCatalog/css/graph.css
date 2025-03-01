@@ -1,0 +1,47 @@
+.product-graphs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+   width: 100%;
+  max-width: 1000px; 
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.stock-inputs{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+.stock-inputs input{
+  margin-left: 10px;
+  border-bottom: solid 1px rgb(146, 144, 144);
+  border-radius: 10px;
+}
+.refresh-btn-1{
+  background-color: none;
+}
+.graphs{
+    display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 5rem;
+}
+
+.sales-graph, .stock-graph {
+    height: 500px; 
+  width: 80%;
+  margin-bottom: 2.4rem;
+}
+h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* 30 18 8 */

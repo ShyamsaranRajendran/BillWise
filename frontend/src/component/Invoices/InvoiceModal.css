@@ -1,0 +1,160 @@
+.forminvoice{
+    width: 100%;
+    padding-left: 10px;
+}
+
+
+.invoice-container {
+  background-color: #f8f9fa;
+  padding: 16px;
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #f8f9fa;
+  padding: 16px;
+}
+
+.invoice-header .amount-due {
+  text-align: end;
+  margin-left: 16px;
+}
+
+.invoice-header h4,
+.invoice-header h6 {
+  margin: 0;
+}
+
+.invoice-body {
+  padding: 16px;
+}
+
+.invoice-table th,
+.invoice-table td {
+  text-align: end;
+}
+
+.invoice-table .quantity-cell,
+.invoice-table .price-cell,
+.invoice-table .amount-cell {
+  width: 100px;
+}
+
+.invoice-summary td {
+  width: 100px;
+}
+
+.invoice-footer {
+  padding: 16px;
+}
+
+.invoice-download-btn {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.invoice-notes {
+  background-color: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+
+/* ///////////////////////////////////////////////////////////// \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+/* InvoiceItem.css */
+
+.table-container {
+  width: 100%;
+}
+
+.table-header th {
+  text-align: left;
+}
+
+.table-header th,
+.table-body td {
+  padding: 8px;
+  text-align: left;
+}
+
+.table-body td {
+  vertical-align: middle;
+}
+
+.item-name-description {
+  width: 100%;
+}
+
+.item-quantity {
+  min-width: 70px;
+}
+
+.item-price {
+  min-width: 130px;
+}
+
+.action-column {
+  text-align: center;
+  min-width: 50px;
+}
+
+.add-item-btn {
+  font-weight: bold;
+  background-color: #6c757d;
+}
+
+.delete-btn {
+  height: 33px;
+  width: 33px;
+  padding: 7.5px;
+  color: white;
+  margin-top: 1px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+/* EditableField.css */
+
+.input-group-custom {
+  margin: 0.25rem 0;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.input-group-text-custom {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  border: none;
+  color: #6c757d;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.input-group-icon {
+  border: 2px solid #6c757d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: small;
+}
+
+.input-control {
+  text-align: left;
+}
+
+.input-control-end {
+  text-align: right;
+}

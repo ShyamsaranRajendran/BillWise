@@ -23,7 +23,6 @@ router.use(
 function generateOTP() {
   return Math.floor(100000 + Math.random() * 900000);
 }
-
 router.post("/register", async function (req, res) {
   try {
     const { name, email, username, password, phoneNumber, confirm_password } =
@@ -40,9 +39,8 @@ router.post("/register", async function (req, res) {
 
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
-   const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
-      expiresIn: "1h",
-    });
+
+    // Create new user instance
     const newUser = new User({
       name: name,
       email: email,
@@ -51,15 +49,21 @@ router.post("/register", async function (req, res) {
       phoneNumber: phoneNumber,
       admin: 0,
     });
+    
     await newUser.save();
+
+    // Generate token using newUser's ID
+    const token = jwt.sign({ userId: newUser.id }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
     await mailer(
       email,
       "reg",
-      "Welcome to Raattai and happy purchasing. Please confirm your registration by login to http://3.6.184.48:3000/login"
+      "Welcome to Raattai and happy purchasing. Please confirm your registration by logging in to http://3.6.184.48:3000/login"
     );
 
-    res.json({ success: "You will receive an email notification.",token: token});
+    res.json({ success: "You will receive an email notification.", token: token });
   } catch (error) {
     console.error("Error registering user:", error);
     res.status(500).json({ error: "Internal Server Error" });

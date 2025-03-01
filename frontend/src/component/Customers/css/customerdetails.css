@@ -1,0 +1,284 @@
+/* Container for the entire Customer Details section */
+.CustomerDetails {
+  margin: auto; /* Centers the element vertically and horizontally if the parent allows */
+  padding: 20px;
+  background-color: #f8f9fa; /* Light background color */
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+/* Edit button container for positioning */
+.edit-button-container {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  padding: 10px;
+}
+
+/* Edit button styling */
+.edit-button {
+  background-color: #525252; /* Green color */
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.edit-button:hover {
+  background-color: #45a049; /* Slightly darker green on hover */
+}
+
+/* Map container with padding and rounded corners */
+.location-box {
+  height: 200px;
+  width: 100%;
+  position: relative;
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 10px 20px ;
+}
+
+/* Profile section for the top part of the component */
+.profile-first-half {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 10px;
+  width: 100%;
+}
+
+/* Profile picture container */
+.profile-pic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Profile image styling */
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #4ca3ff; /* Blue border around the profile image */
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+/* Ensures profile image fits within the circular frame */
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps the image aspect ratio while filling the container */
+}
+
+/* Styling for the customer's name */
+.profile-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #343a40; /* Dark grey color for the name */
+}
+
+.status {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.cus-type {
+  font-size: 14px;
+  color: #6c757d;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #e9ecef;
+  margin-bottom: 10px;
+}
+
+.profile-about {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.profile-about p {
+  margin: 0;
+}
+
+.profile-desc-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 4px;
+}
+
+.btn-profile {
+  all: unset;
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid  rgb(241, 99, 52);
+  border-radius: 25px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color:  rgb(241, 99, 52);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn-profile::before,
+.btn-profile::after {
+  content: "";
+  position: absolute;
+  background-color:   #ffa500;
+  z-index: -1;
+  transition: all 3s ease;
+}
+
+.btn-profile::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.btn-profile::after {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.btn-profile:hover::before,
+.btn-profile:hover::after {
+  transform: scaleX(1.5);
+}
+
+.btn-profile:hover {
+  color: #ffa500;
+}
+
+.line {
+  border-top: 2px solid  rgb(241, 99, 52);
+  margin: 5px 0;
+  width: 100%;
+}
+
+.content-frame-g, .content-frame-y, .content-frame-r {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  gap: 10px;
+  border: solid 2px   #ffa500;;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.content-frame-g:hover {
+  color: #28a745;
+}
+
+.content-frame-y:hover {
+ color:   #ff6600;
+}
+
+.content-frame-r:hover {
+  color: #dc3545;
+}
+
+.circle-frame {
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  border-radius: 50%;
+  border: solid 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.sales {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.sales-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.no-customer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto; 
+  background-color: #f8f9fa;
+   padding-bottom: 10px;
+  border-radius: 20px;
+}
+
+.no-customer-content {
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+  
+}
+
+.placeholder-image {
+  width: 100%; 
+  height: 100%;
+  padding: 18px 40px;
+  border-radius: 50%;
+  animation: bounce 1.8s infinite;
+  margin-bottom: 20px;
+}
+
+.no-customer-text {
+  font-size: 18px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

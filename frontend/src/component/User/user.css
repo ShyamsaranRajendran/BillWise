@@ -1,0 +1,186 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+}
+
+/* Container */
+.user-entry {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+/* Part 2: Form container */
+.user-part-2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px; background: rgb(241,99,52);
+background: linear-gradient(90deg, rgba(241,99,52,1) 33%, rgba(246,153,18,1) 100%); }
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.user-part-2 p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.label-usr {
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input[type="email"],
+input[type="password"] {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #333;
+}
+
+button[type="submit"],
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFA500;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover{
+  background-color: #FF8C00;
+}
+
+.auth-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.google-button,
+.facebook-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: #333;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.google-button:hover {
+  background-color: #4285F4;
+  color: white;
+}
+
+.facebook-button:hover {
+  background-color: #3b5998;
+  color: white;
+}
+
+/* Media Queries for Responsive Font Sizes */
+
+/* Extra Small Devices (phones, 600px and down) */
+@media (max-width: 600px) {
+  .title {
+    font-size: 24px;
+  }
+  .user-part-2 p {
+    font-size: 14px;
+  }
+  input {
+    font-size: 14px;
+  }
+  button {
+    font-size: 16px;
+  }
+}
+
+/* Small Devices (portrait tablets and large phones, 600px to 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .title {
+    font-size: 28px;
+  }
+  .user-part-2 p {
+    font-size: 16px;
+  }
+  input {
+    font-size: 15px;
+  }
+  button {
+    font-size: 17px;
+  }
+}
+
+/* Medium Devices (landscape tablets, 769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .title {
+    font-size: 32px;
+  }
+  .user-part-2 p {
+    font-size: 18px;
+  }
+  input {
+    font-size: 16px;
+  }
+  button {
+    font-size: 18px;
+  }
+}
+
+/* Large Devices (laptops/desktops, 1025px and up) */
+@media (min-width: 1025px) {
+  .title {
+    font-size: 36px;
+  }
+  .user-part-2 p {
+    font-size: 18px;
+  }
+  input {
+    font-size: 16px;
+  }
+  button {
+    font-size: 18px;
+  }
+}
+
+.sign-btn-log-btn{
+    border: none;
+    color: #f7f5f2;
+    background-color: inherit;
+}
+
+.sign-btn-log-btn:hover {
+  text-decoration: underline;
+}

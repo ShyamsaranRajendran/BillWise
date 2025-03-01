@@ -1,3 +1,3 @@
 module.exports={
-    database: 'mongodb://localhost:27017/biller'
+    database: 'mongodb+srv://sarancode6:phwAi0IYGLd5aWQM@test-pro-db.bptyj9z.mongodb.net/biller'
 }
